@@ -6,7 +6,7 @@ const Product = require("../models/productModel")
 const getProducts = asyncHandler(async (req, res) => {
     const products = await Product.find();
     res.status(200).json(products)
-})
+});
 
 // @desc Get a product
 // @router GET /api/products/:id
@@ -64,7 +64,7 @@ const updatedProduct = await Product.findByIdAndUpdate(
 // @desc Delete a product
 // @router DELETE /api/products/:id
 // @access public
-const deletProduct = asyncHandler(async(req, res) => {
+const deletProduct = asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product) {
         res.status(404);
