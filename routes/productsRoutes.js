@@ -6,8 +6,10 @@ const {
     createProducts, 
     uppdateProduct, 
     deletProduct  
-} = require("../controllers/productController")
+} = require("../controllers/productController");
+const validateToken = require("../middleware/validateTokenHandler");
 
+router.use(validateToken);
 router.route("/").get(getProducts).post(createProducts);
 router.route("/:id").get(getProduct).put(uppdateProduct).delete(deletProduct);
 

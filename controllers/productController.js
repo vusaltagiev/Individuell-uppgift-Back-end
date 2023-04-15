@@ -2,15 +2,15 @@ const asyncHandler = require("express-async-handler");
 const Product = require("../models/productModel")
 // @desc Get all products
 // @router GET /api/products
-// @access public
+// @access private
 const getProducts = asyncHandler(async (req, res) => {
-    const products = await Product.find();
+    const products = await Product.find({ user_id: req.user_id });
     res.status(200).json(products)
 });
 
 // @desc Get a product
 // @router GET /api/products/:id
-// @access public
+// @access private
 const getProduct = asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product) {
@@ -23,7 +23,7 @@ const getProduct = asyncHandler(async (req, res) => {
 
 // @desc Create New products
 // @router POST /api/products
-// @access public
+// @access private
 const createProducts = asyncHandler(async (req, res) => {
     console.log("The req body is :", req.body)
     const {name, description, price, ImageURL} = req.body
@@ -36,6 +36,7 @@ const createProducts = asyncHandler(async (req, res) => {
         description,
         price,
         ImageURL,
+        user_id: req.user_id,
     })
     res.status(201).json(product)
 })
@@ -43,7 +44,7 @@ const createProducts = asyncHandler(async (req, res) => {
 
 // @desc Uppdate a product
 // @router PUT /api/products/:id
-// @access public
+// @access private
 const uppdateProduct = asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product) {
@@ -63,7 +64,7 @@ const updatedProduct = await Product.findByIdAndUpdate(
 
 // @desc Delete a product
 // @router DELETE /api/products/:id
-// @access public
+// @access private
 const deletProduct = asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product) {
