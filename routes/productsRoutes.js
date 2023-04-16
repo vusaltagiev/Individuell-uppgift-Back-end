@@ -2,16 +2,15 @@ const express = require("express");
 const router = express.Router();
 const { 
     getProducts, 
-    getProduct, 
     createProducts, 
-    uppdateProduct, 
-    deletProduct  
+    getProduct, 
+    updateProduct, 
+    deleteProduct, 
 } = require("../controllers/productController");
 const validateToken = require("../middleware/validateTokenHandler");
 
 router.use(validateToken);
 router.route("/").get(getProducts).post(createProducts);
-router.route("/:id").get(getProduct).put(uppdateProduct).delete(deletProduct);
-
+router.route("/:id").get(getProduct).put(updateProduct).delete(deleteProduct);
 
 module.exports = router; 

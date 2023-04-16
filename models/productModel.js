@@ -7,7 +7,7 @@ const productSchema = mongoose.Schema(
             required: true,
             ref: "User",
         },
-        name:{
+        name: {
             type: String,
             required: [true, "Pleas add the product name"],
         },
@@ -23,9 +23,10 @@ const productSchema = mongoose.Schema(
             type: String,
             required: [true, "Please add the URL for the product"],
         },
-    },      {
-                timestamps: true,
-            }
+    },      
+    {
+        timestamps: true,
+    }
 );
 
 module.exports = mongoose.model("Product", productSchema);
