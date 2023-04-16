@@ -44,7 +44,7 @@ const getProduct = asyncHandler(async (req, res) => {
 // @desc Uppdate a product
 // @router PUT /api/products/:id
 // @access private
-const uppdateProduct = asyncHandler(async (req, res) => {
+const updateProduct = asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product) {
         res.status(404);
@@ -69,7 +69,7 @@ const updatedProduct = await Product.findByIdAndUpdate(
 // @desc Delete a product
 // @router DELETE /api/products/:id
 // @access private
-const deletProduct = asyncHandler(async (req, res) => {
+const deleteProduct = asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product) {
         res.status(404);
@@ -88,6 +88,6 @@ module.exports = {
     getProducts, 
     createProducts, 
     getProduct, 
-    uppdateProduct, 
-    deletProduct,
+    updateProduct, 
+    deleteProduct,
 };
